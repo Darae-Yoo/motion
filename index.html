@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포즈 매칭 게임</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@2.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.5.1635988162"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>포즈 매칭 게임</h1>
+        
+        <div class="game-info">
+            <div class="level-info">
+                <span>레벨: </span>
+                <span id="currentLevel">1</span>
+                <span>/4</span>
+            </div>
+            <div class="timer">
+                <span>시간: </span>
+                <span id="timer">00:00</span>
+            </div>
+        </div>
+
+        <div class="game-area">
+            <div class="pose-image-container">
+                <h3>목표 포즈</h3>
+                <img id="targetPose" src="image/1.jpg" alt="목표 포즈">
+            </div>
+            
+            <div class="webcam-container">
+                <h3>내 포즈</h3>
+                <video id="webcam" autoplay muted></video>
+                <canvas id="poseCanvas" width="640" height="480"></canvas>
+            </div>
+        </div>
+
+        <div class="progress-section">
+            <h3>일치도</h3>
+            <div class="progress-bar-container">
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <span id="progressText">0%</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="startBtn" class="btn">게임 시작</button>
+            <button id="resetBtn" class="btn">다시 시작</button>
+        </div>
+
+        <div id="gameComplete" class="game-complete hidden">
+            <h2>게임 완료!</h2>
+            <p>총 소요 시간: <span id="totalTime">00:00</span></p>
+            <button id="playAgainBtn" class="btn">다시 플레이</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
